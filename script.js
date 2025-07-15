@@ -60,7 +60,7 @@ lightbox.addEventListener('click', (e) => {
   }
 });
 
-// ⬇️ Tambahkan kode Escape key di sini
+// Escape key to close lightbox
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && lightbox.style.display === 'flex') {
     closeLightbox();
