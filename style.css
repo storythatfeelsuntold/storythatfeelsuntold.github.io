@@ -1,31 +1,73 @@
+/* =========================
+   Global Styles
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Anton', sans-serif;
   background-color: #0b0b0b;
-  background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.8)), url('img/Background.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url('img/Background.jpg');
   background-attachment: fixed;
   background-size: cover;
   color: #f0f0f0;
   overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* =========================
+   Typography
+========================= */
+h1, h2, h3,
+.video-title,
+.hero-desc,
+nav a,
+.btn,
+footer {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+.section-heading {
+  font-family: 'Metal Mania', cursive;
+  font-size: 5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.3em;
+  letter-spacing: 2px;
+}
+
+/* =========================
+   Header & Navigation
+========================= */
 .banner img {
   width: 100%;
-  display: block;
   max-height: 400px;
   object-fit: cover;
+  display: block;
 }
 
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   flex-wrap: wrap;
+  padding: 20px;
+  gap: 30px;
   background-color: rgba(10, 10, 10, 0.85);
   border-bottom: 1px solid #333;
-  gap: 30px;
 }
 
 .logo {
@@ -35,10 +77,10 @@ header {
 nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 25px;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -53,11 +95,13 @@ nav a:hover {
   color: #00ffcc;
 }
 
-/* Tambahan: link aktif */
 nav a.active {
   border-bottom: 2px solid #00ffcc;
 }
 
+/* =========================
+   Section & Layout
+========================= */
 section {
   max-width: 960px;
   margin: 0 auto;
@@ -72,6 +116,36 @@ section {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
+.slogan {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.foto-band {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.hero-desc {
+  margin: 20px auto 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #c7c7c7;
+  max-width: 700px;
+  padding: 0 20px;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   Buttons
+========================= */
 .btn-group {
   margin-top: 20px;
 }
@@ -90,20 +164,51 @@ section {
   background-color: #00cfa8;
 }
 
-.slogan {
-  font-style: italic;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-.foto-band {
-  max-width: 700px;
-  width: 100%;
-  margin-top: 20px;
+.presave-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-family: 'Bebas Neue', sans-serif;
+  background-color: #00f5d4;
+  color: #000;
+  padding: 10px 16px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
 }
 
+.presave-btn:hover {
+  transform: scale(1.05);
+}
+
+.presave-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 480px) {
+  .presave-btn {
+    bottom: 15px;
+    right: 12px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .presave-btn img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =========================
+   Gallery & Lightbox
+========================= */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -122,6 +227,55 @@ section {
   filter: grayscale(0%);
 }
 
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.lightbox-content.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  z-index: 1001;
+}
+
+.lightbox .close:hover {
+  color: #00ffcc;
+  transform: scale(1.1);
+}
+
+/* =========================
+   Streaming & Contact
+========================= */
 .streaming-links {
   display: flex;
   justify-content: center;
@@ -170,34 +324,9 @@ section {
   text-decoration: underline;
 }
 
-.presave-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  font-family: 'Bebas Neue', sans-serif;
-  background-color: #00f5d4;
-  color: #000;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
-}
-
-.presave-btn:hover {
-  transform: scale(1.05);
-}
-
-.presave-btn img {
-  width: 20px;
-  height: 20px;
-}
-
+/* =========================
+   Animation
+========================= */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -209,112 +338,9 @@ section {
   transform: translateY(0);
 }
 
-@media (max-width: 480px) {
-  .presave-btn {
-    bottom: 15px;
-    right: 12px;
-    padding: 8px 14px;
-    font-size: 0.85rem;
-  }
-
-  .presave-btn img {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-/* Efek gelap & blur di background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: rgba(0, 0, 0, 0.3); /* warna gelap transparan */
-  backdrop-filter: blur(4px);     /* efek blur */
-  -webkit-backdrop-filter: blur(4px); /* dukungan Safari */
-}
-
-.hero-desc {
-  margin-top: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #c7c7c7;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  padding: 0 20px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-/* Lightbox Style */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(6px);
-}
-
-.lightbox-content {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
-  transform: scale(0.95);
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.lightbox-content.visible {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.lightbox .close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.3s ease;
-  z-index: 1001;
-}
-
-.lightbox .close:hover {
-  color: #00ffcc;
-  transform: scale(1.1);
-}
-
-/* Tambahan: smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.85rem;
-  color: #aaa;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-top: 1px solid #222;
-  margin-top: 40px;
-}
-
-footer small {
-  display: block;
-  line-height: 1.5;
-}
-
+/* =========================
+   Video Section
+========================= */
 .video-section {
   background-color: #000;
   text-align: center;
@@ -331,7 +357,7 @@ footer small {
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   max-width: 800px;
@@ -349,27 +375,21 @@ footer small {
   border: none;
 }
 
+/* =========================
+   Footer
+========================= */
+footer,
 .site-footer {
   text-align: center;
-  padding: 40px 0;
-  font-size: 0.8rem;
-  color: #ccc;
+  padding: 20px 0;
+  font-size: 0.85rem;
+  color: #aaa;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid #222;
+  margin-top: 40px;
 }
 
-body {
-  font-family: 'Anton', sans-serif;
-}
-
-h1, h2, h3, .video-title, .hero-desc, nav a, .btn, footer {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1px;
-}
-
-.section-heading {
-  font-family: 'Metal Mania', cursive;
-  font-size: 5rem; /* Lebih besar dari default h2 */
-  color: #fff;
-  text-align: center;
-  margin-bottom: 0.3em;
-  letter-spacing: 2px;
+footer small {
+  display: block;
+  line-height: 1.5;
 }
