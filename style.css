@@ -117,7 +117,8 @@ section {
 }
 
 .slogan {
-  font-style: italic;
+  font-family: 'Odibee Sans', cursive;
+  font-style: none;
   font-size: 1.1rem;
   margin-bottom: 20px;
 }
