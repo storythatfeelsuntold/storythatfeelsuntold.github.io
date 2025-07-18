@@ -363,3 +363,12 @@ h1, h2, h3, .video-title, .hero-desc, nav a, .btn, footer {
   font-family: 'Anton', sans-serif;
   letter-spacing: 1px;
 }
+
+.section-heading {
+  font-family: 'Anton', sans-serif;
+  font-size: 5rem; /* Lebih besar dari default h2 */
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.3em;
+  letter-spacing: 2px;
+}
