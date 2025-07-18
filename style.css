@@ -354,3 +354,12 @@ footer small {
   font-size: 0.8rem;
   color: #ccc;
 }
+
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+h1, h2, h3, .video-title, .hero-desc, nav a, .btn, footer {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 1px;
+}
