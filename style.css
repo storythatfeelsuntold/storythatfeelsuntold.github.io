@@ -49,6 +49,16 @@ footer {
   letter-spacing: 2px;
 }
 
+.custom-quote {
+  font-family: 'Bahiana', cursive; /* atau ganti ke font lain */
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #ffffff; /* atau warna sesuai tema */
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
 /* =========================
    Header & Navigation
 ========================= */
