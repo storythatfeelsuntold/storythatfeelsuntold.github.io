@@ -50,12 +50,13 @@ footer {
 }
 
 .custom-quote {
-  font-family: 'Bahiana', cursive; /* atau ganti ke font lain */
-  font-size: 1.3rem;
-  font-style: italic;
-  color: #ffffff; /* atau warna sesuai tema */
+  font-family: 'Bahiana', sans-serif;
+  font-style: normal; /* Pastikan tidak italic */
+  font-size: 2.4rem;   /* Perbesar ukuran teks */
+  letter-spacing: 1px;
+  color: #ffffff;
   text-align: center;
-  margin: 20px auto;
+  margin: 30px auto;
   max-width: 800px;
 }
 
